@@ -157,11 +157,12 @@ void suspend_wakeup_init_kb(void) {
         rgb_matrix_set_color(2, 0xFF, 0x00, 0x00);
         rgb_matrix_set_color(22, rgb_matrix_get_val(), 0x00, 0x00);
 
-        int numpad[] = {23,24,25,
+        int numpad[11] = {23,24,25,
             38,39,40,
-            53,54,55};
+            53,54,55,
+            68};
         int i = 0;
-        for ( i = 0; i<9; i++ ){
+        for ( i = 0; i<10; i++ ){
             rgb_matrix_set_color(numpad[i], 0x00, rgb_matrix_get_val()/2, rgb_matrix_get_val());
         }
     }
@@ -171,14 +172,17 @@ void suspend_wakeup_init_kb(void) {
     if (IS_LAYER_ON(4)) {
         rgb_matrix_set_color(4, 0xFF, 0x00, 0x00);
     }
-}
- __attribute__ ((weak)) layer_state_t layer_state_set_user(layer_state_t state) {
-    if ( IS_LAYER_ON(2) && !host_keyboard_led_state().num_lock ) {
-        tap_code(KC_NUMLOCK);
-    }else if ( !IS_LAYER_ON(2) && host_keyboard_led_state().num_lock ) {
-        tap_code(KC_NUMLOCK);
+    if (IS_LAYER_ON(5)) {
+        rgb_matrix_set_color(5, 0xFF, 0x00, 0x00);
     }
-    return state;
- }
+}
+ /* __attribute__ ((weak)) layer_state_t layer_state_set_user(layer_state_t state) { */
+ /*    if ( IS_LAYER_ON(2) && !host_keyboard_led_state().num_lock ) { */
+ /*        tap_code(KC_NUMLOCK); */
+ /*    }else if ( !IS_LAYER_ON(2) && host_keyboard_led_state().num_lock ) { */
+ /*        tap_code(KC_NUMLOCK); */
+ /*    } */
+ /*    return state; */
+ /* } */
 
 #endif
